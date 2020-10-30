@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import './../scss/index.scss';
 import { endpoint } from './modules/getData';
 console.log('hello');
@@ -6,7 +7,6 @@ let selectedColumn = null;
 
 getData(endpoint).then((data) => {
   console.log('hello, data is loaded');
-  console.log(data);
   selectedColumn = 'areaid';
   const areaManagerID = getAreaManager(data, selectedColumn);
   console.log(areaManagerID);
