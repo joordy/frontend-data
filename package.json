@@ -1,0 +1,29 @@
+{
+  "name": "frontend-data",
+  "version": "1.0.0",
+  "description": "My repo frontend-data is a part of the @CMDA-TT. Inside my repo I made data visualizations with D3js, you can read them inside my wiki.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/index.html",
+    "build": "parcel (src/index.html)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joordy/frontend-data.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joordy/frontend-data/issues"
+  },
+  "homepage": "https://github.com/joordy/frontend-data#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/runtime-corejs2": "^7.12.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.28.0"
+  }
+}
