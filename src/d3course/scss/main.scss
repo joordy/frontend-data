@@ -13,6 +13,7 @@ html {
   padding: 0;
   box-sizing: border-box;
   font-size: 16px;
+  overflow: hidden;
 }
 
 body {
@@ -28,5 +29,30 @@ body {
   }
   svg {
     background-color: white;
+    circle {
+      fill: steelblue;
+    }
+    circle {
+      fill: red;
+      opacity: 0.3;
+    }
+    text {
+      font-size: 2rem;
+      font-family: sans-serif;
+    }
+    .title {
+      text-anchor: middle;
+    }
+    .tick text {
+      font-size: 1.2rem;
+      fill: #635f5d;
+    }
+    .tick line {
+      stroke: #c0c0bb;
+    }
+    .axis-label {
+      font-size: 1.5rem;
+      color: #8e8883;
+    }
   }
 }
