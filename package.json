@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "d3": "^6.2.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "topojson": "^3.0.2",
+    "world-atlas": "^2.0.2"
   }
 }

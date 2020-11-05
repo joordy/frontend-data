@@ -1,22 +1,26 @@
 # frontend-data
 
-My repo frontend-data is a part of the @CMDA-TT. Inside my repo I made data visualizations with D3js, you can read them inside my wiki.
-
 ## :page_facing_up: Research Case
+
+**How well developed are the parking garages of the largest cities in the Randstad?**
 
 ---
 
 ## :flashlight: Features
 
+I'll be making a data visualization with Javascript D3 of how well developed the parking garages are in the big cities from holland. I'll be comparing the Drive-through height, EV-charging capacity and the disabled access possibilities. By using the location I display where the optimal parking garages are located.
+
 ---
 
 ## :chart: Dataset
 
----
-
-## :key: Interesting functional pattern
+For my project I'll be using the [Location API](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34) and [Specification API](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s) form the RDW.
 
 ---
+
+<!-- ## :key: Interesting functional pattern
+
+--- -->
 
 ## :rocket: Install
 
