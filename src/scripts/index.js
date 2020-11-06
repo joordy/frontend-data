@@ -1,40 +1,44 @@
 import 'regenerator-runtime/runtime';
 import './../scss/main.scss';
-// d3 library
-
+// importing Utils
+import { makeMap } from './utils/visuals/map';
 import { endpoint1, endpoint2 } from './utils/config/endPoints';
 import { getData } from './utils/config/getApi';
-import { getAreaManager } from './utils/filters/data';
+// import { getAreaManager } from './utils/filters/data';
 
-let selectedColumn = null;
+// let selectedColumn = null;
 
 getData(endpoint1, endpoint2).then((rdwData) => {
   console.log(rdwData);
-  selectedColumn = 'areamanagerid';
-  const areaManagersID = getAreaManager(rdwData, selectedColumn);
-  console.log(areaManagersID);
 
-  // let barchartResults = filterForBarChart(rdwData);
-  // console.log(barchartResults);
+  // function checkIfTrue() {
+  //   rdwData.forEach((parkingSpecs) => {
+  //     if (typeof parkingSpecs != undefined) {
+  //       console.log('gotcha');
+  //     }
+  //   });
+  // }
+  // checkIfTrue();
+
+  let filteredData = rdwData.map((item) => {
+    return {
+      itemDesc: item.areadesc,
+      itemID: item.areaid,
+      long: item.location.longitude,
+      parking: item.parkingSpecs.areaid,
+
+      // parkingEV: item.parkingSpecs.chargingpointcapacity,
+      // parking: item.parkingSpecs, // returned heel object
+      // parkingCap: item.parkingSpecs, // onbereikbaar
+    };
+  });
+
+  console.log(filteredData);
+
+  // console.log(rdwData);
+  // selectedColumn = 'areamanagerid';
+  // const areaManagersID = getAreaManager(rdwData, selectedColumn);
+  // console.log(areaManagersID);
+
+  makeMap();
 });
-
-// import { select, json, geoPath, geoMercator, zoom } from 'd3';
-// import { feature } from 'topojson';
-
-// const svg = select('svg');
-
-// const projection = geoMercator().scale(8000).center([5.116667, 52.17]);
-// const pathGenerator = geoPath().projection(projection);
-
-// json('https://cartomap.github.io/nl/wgs84/gemeente_2020.topojson').then((data) => {
-//   const gemeentes = feature(data, data.objects.gemeente_2020);
-
-//   svg
-//     .selectAll('path')
-//     .data(gemeentes.features)
-//     .enter()
-//     .append('path')
-//     .attr('d', pathGenerator)
-//     .append('title')
-//     .text((d) => `${d.properties.statnaam}, ID:${d.id}`);
-// });

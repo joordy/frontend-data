@@ -2,7 +2,19 @@
 
 ## :page_facing_up: Research Case
 
-**How well developed are the parking garages of the largest cities in the Randstad?**
+**What about the accessibility of parking garages in the major cities of the Netherlands**
+
+**Hebben parkeergarages in grotere steden meer plek voor elektrische voertuigen**
+
+**Hebben parkeergarages in grote steden minder plekken voor hogere voertuigen?**
+Sub items:
+
+- Charging access
+- Disabled Access
+- Parking Capacity
+- DriveThroughHeight, accessible for everyone?
+
+<!-- **How well developed are the parking garages of the largest cities in the Randstad?** -->
 
 ---
 
