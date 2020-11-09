@@ -10,7 +10,6 @@ html {
 
 * {
   margin: 0px;
-  overflow: hidden;
   padding: 0;
   box-sizing: border-box;
   font-size: 16px;
@@ -28,8 +27,6 @@ body {
     color: white;
   }
   section {
-    width: 900px;
-    height: 500px;
     margin: 0 auto;
     svg {
       background-color: white;
@@ -41,10 +38,13 @@ body {
       path:hover {
         fill: orangered;
       }
-      g {
-        width: 600%;
-        height: 600%;
+      .rectangle:hover {
+        opacity: 0.5;
       }
+      // g {
+      //   width: 600%;
+      //   height: 600%;
+      // }
     }
   }
 }

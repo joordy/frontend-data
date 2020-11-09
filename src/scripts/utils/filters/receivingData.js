@@ -43,8 +43,8 @@ export let garageLocations = (rdwData) => {
     return {
       itemDesc: item.areadesc,
       itemID: item.areaid,
-      lat: item.location.latitude,
-      long: item.location.longitude,
+      lat: parseFloat(item.location.latitude),
+      long: parseFloat(item.location.longitude),
     };
   });
 };
