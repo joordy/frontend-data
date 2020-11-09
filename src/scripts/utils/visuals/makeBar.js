@@ -1,10 +1,10 @@
 import { select, range, scaleLinear, max, scaleBand, axisLeft, axisBottom, format, descending } from 'd3';
 
-export function makeBar(carCapacity) {
+export function makeBar(myData) {
   console.log('Loads bar');
 
   // Graph data
-  const data = carCapacity.splice(0, 10);
+  const data = myData.splice(0, 10);
   console.log(data);
 
   // sizes
@@ -19,28 +19,35 @@ export function makeBar(carCapacity) {
     .attr('height', height - margin.top - margin.bottom)
     .attr('viewBox', [0, 0, width, height]);
 
-  // X axis
-  const xValue = scaleBand()
-    .domain(range(data.length))
-    .range([margin.left, width - margin.right])
-    .padding(0.1);
+  data.sort(function (b, a) {
+    console.log(a.value);
+    console.log(b.value);
 
-  // Y axis
-  const yValue = scaleLinear()
-    .domain([0, max(data, (d) => d.carCapacity)])
-    .range([height - margin.bottom, margin.top]);
+    return a.Value - b.Value;
+  });
 
-  svg
-    .append('g')
-    .attr('fill', 'royalblue')
-    .selectAll('rect')
-    .data(data.sort((a, b) => descending(a.carCapacity, b.carCapacity)))
-    .join('rect')
-    .attr('x', (d, i) => xValue(i))
-    .attr('y', (d) => yValue(d.carCapacity))
-    .attr('height', (d) => yValue(0) - yValue(d.carCapacity))
-    .attr('width', xValue.bandwidth())
-    .attr('class', 'rectangle');
+  // // X axis
+  // const xValue = scaleBand()
+  //   .domain(range(data.length))
+  //   .range([margin.left, width - margin.right])
+  //   .padding(0.1);
+
+  // // Y axis
+  // const yValue = scaleLinear()
+  //   .domain([0, max(data, (d) => d.carCapacity)])
+  //   .range([height - margin.bottom, margin.top]);
+
+  // svg
+  //   .append('g')
+  //   .attr('fill', 'royalblue')
+  //   .selectAll('rect')
+  //   .data(data.sort((a, b) => descending(a.carCapacity, b.carCapacity)))
+  //   .join('rect')
+  //   .attr('x', (d, i) => xValue(i))
+  //   .attr('y', (d) => yValue(d.carCapacity))
+  //   .attr('height', (d) => yValue(0) - yValue(d.carCapacity))
+  //   .attr('width', xValue.bandwidth())
+  //   .attr('class', 'rectangle');
 
   // const xAxis = (g) => {
   //   g.attr('transform', `translate(0 ${height - margin.bottom})`)
@@ -53,5 +60,5 @@ export function makeBar(carCapacity) {
   // };
   // svg.append('g').call(yAxis);
   // svg.append('g').call(xAxis);
-  svg.node();
+  // svg.node();
 }

@@ -27,8 +27,10 @@ body {
     color: white;
   }
   section {
-    margin: 0 auto;
     svg {
+      display: block;
+      margin: auto;
+
       background-color: white;
       path {
         fill: grey;
