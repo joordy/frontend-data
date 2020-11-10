@@ -32,10 +32,13 @@ body {
       background-color: white;
     }
     svg {
+      &:nth-child(1) {
+        display: none;
+      }
       display: block;
       margin: auto;
       margin: 50px auto 50px auto;
-      // background-color: white;
+      background-color: white;
       path {
         fill: grey;
         stroke: black;
@@ -46,6 +49,9 @@ body {
       }
       .rectangle:hover {
         opacity: 0.5;
+      }
+      .bar {
+        fill: Darkmagenta;
       }
       // g {
       //   width: 600%;

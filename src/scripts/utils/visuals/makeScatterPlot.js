@@ -1,27 +1,17 @@
 import { select, scaleLinear, extent, axisLeft, axisBottom } from 'd3';
+import { svgSize } from './helpers/config';
 
 export function makeScatterPlot(maxDriveThrough) {
-  console.log('hello');
-
+  // console.log('hello');
   const data = maxDriveThrough;
-  console.log(data);
-
-  const width = 700;
-  const height = 450;
-  const margin = { top: 80, right: 60, bottom: 40, left: 120 };
 
   // Creating SVG
   const svg = select('#charts')
     .append('svg')
-    .attr('width', width - margin.left - margin.right)
-    .attr('height', height - margin.top - margin.bottom)
-    .attr('viewBox', [0, 0, width, height])
+    .attr('width', svgSize.w - svgSize.m.l - svgSize.m.r)
+    .attr('height', svgSize.h - svgSize.m.t - svgSize.m.b)
+    .attr('viewBox', [0, 0, svgSize.w, svgSize.h])
     .classed('myBarChart', true);
-
-  // const svg = select('svg');
-
-  // const width = +svg.attr('width');
-  // const height = +svg.attr('height');
 
   const graphTitle = 'DriveThrough height vs EV- charger capacity';
   const circleRadius = 5;
@@ -30,14 +20,14 @@ export function makeScatterPlot(maxDriveThrough) {
   const xValue = (d) => d.evChargerCapacity;
   const xAxisLabel = 'EV-chargers';
   //const margin = { top: 80, right: 60, bottom: 40, left: 120 };
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.left - margin.right;
+  const innerWidth = svgSize.w - svgSize.m.l - svgSize.m.r;
+  const innerHeight = svgSize.h - svgSize.m.t - svgSize.m.b;
 
   const xScale = scaleLinear().domain(extent(data, xValue)).range([0, innerWidth]).nice();
 
   const yScale = scaleLinear().domain(extent(data, yValue)).range([0, innerHeight]).nice();
 
-  const g = svg.append('g').attr(`transform`, `translate(${margin.left}, ${margin.top})`);
+  const g = svg.append('g').attr(`transform`, `translate(${svgSize.m.l}, ${svgSize.m.t})`);
 
   const xAxis = axisBottom(xScale).tickSize(-innerHeight).tickPadding(20);
 

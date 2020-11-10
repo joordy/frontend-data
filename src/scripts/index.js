@@ -8,9 +8,9 @@ import { capacityFilter, evCapacityFilter, maxVehicleFilter, garageLocations } f
 
 // Importing Visuals
 import { makeBar } from './utils/visuals/makeBar';
+import { drawVisualization } from './utils/visuals/bar';
 import { makeScatterPlot } from './utils/visuals/makeScatterPlot';
-
-// let selectedColumn = null;
+import { makeScat } from './utils/visuals/scat';
 
 getData(endpoint1, endpoint2).then((rdwData) => {
   // New Data arrays to use in visuals
@@ -18,31 +18,15 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   const evChargers = evCapacityFilter(rdwData);
   const maxDriveThrough = maxVehicleFilter(rdwData);
   const locations = garageLocations(rdwData);
+  // Logging the datasets
   console.log('shows capacity', carCapacity);
   console.log('shows ev-chargers', evChargers);
   console.log('shows drive-height', maxDriveThrough);
   console.log('shows locations', locations);
 
   // Visuals
+  drawVisualization(carCapacity);
   makeBar(carCapacity);
   makeScatterPlot(maxDriveThrough);
-
-  //locationMap(locations);
-  // console.log(filterCapacity);
-  // function checkIfTrue() {
-  //   rdwData.forEach((parkingSpecs) => {
-  //     if (typeof parkingSpecs != undefined) {
-  //       console.log('gotcha');
-  //     }
-  //   });
-  // }
-  // checkIfTrue();
-
-  // console.log(rdwData);
-  // selectedColumn = 'areamanagerid';
-  // const areaManagersID = getAreaManager(rdwData, selectedColumn);
-  // console.log(areaManagersID);
-
-  // makeBar(carCapacity);
-  //makeMap();
+  makeScat(maxDriveThrough);
 });
