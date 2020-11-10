@@ -31,6 +31,11 @@ export let maxVehicleFilter = (rdwData) => {
     return {
       itemDesc: item.areadesc,
       itemID: item.areaid,
+      evChargerCapacity: parseInt(
+        item.parkingSpecs && item.parkingSpecs.chargingpointcapacity
+          ? item.parkingSpecs.chargingpointcapacity
+          : undefined
+      ),
       maxDriveThrough: parseInt(
         item.parkingSpecs && item.parkingSpecs.maximumvehicleheight ? item.parkingSpecs.maximumvehicleheight : undefined
       ),

@@ -8,6 +8,7 @@ import { capacityFilter, evCapacityFilter, maxVehicleFilter, garageLocations } f
 
 // Importing Visuals
 import { makeBar } from './utils/visuals/makeBar';
+import { makeScatterPlot } from './utils/visuals/makeScatterPlot';
 
 // let selectedColumn = null;
 
@@ -24,6 +25,7 @@ getData(endpoint1, endpoint2).then((rdwData) => {
 
   // Visuals
   makeBar(carCapacity);
+  makeScatterPlot(maxDriveThrough);
 
   //locationMap(locations);
   // console.log(filterCapacity);
