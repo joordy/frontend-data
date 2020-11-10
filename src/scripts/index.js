@@ -4,7 +4,13 @@ import './../scss/main.scss';
 // importing Utils
 import { endpoint1, endpoint2 } from './utils/config/endPoints';
 import { getData } from './utils/config/getApi';
-import { capacityFilter, evCapacityFilter, maxVehicleFilter, garageLocations } from './utils/filters/receivingData';
+import {
+  capacityFilter,
+  evCapacityFilter,
+  maxVehicleFilter,
+  garageLocations,
+  parkingSpecs,
+} from './utils/filters/receivingData';
 
 // Importing Visuals
 import { makeBar } from './utils/visuals/makeBar';
@@ -18,6 +24,7 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   const evChargers = evCapacityFilter(rdwData);
   const maxDriveThrough = maxVehicleFilter(rdwData);
   const locations = garageLocations(rdwData);
+  const parkingSpec = parkingSpecs(rdwData);
   // Logging the datasets
   console.log('shows capacity', carCapacity);
   console.log('shows ev-chargers', evChargers);
@@ -28,5 +35,5 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   drawVisualization(carCapacity);
   makeBar(carCapacity);
   makeScatterPlot(maxDriveThrough);
-  makeScat(maxDriveThrough);
+  makeScat(parkingSpec);
 });

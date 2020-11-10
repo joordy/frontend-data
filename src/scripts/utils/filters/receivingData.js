@@ -43,6 +43,24 @@ export let maxVehicleFilter = (rdwData) => {
   });
 };
 
+export let parkingSpecs = (rdwData) => {
+  return rdwData.map((item) => {
+    return {
+      itemDesc: item.areadesc,
+      itemID: item.areaid,
+      carCapacity: parseInt(item.parkingSpecs && item.parkingSpecs.capacity ? item.parkingSpecs.capacity : undefined),
+      evChargerCapacity: parseInt(
+        item.parkingSpecs && item.parkingSpecs.chargingpointcapacity
+          ? item.parkingSpecs.chargingpointcapacity
+          : undefined
+      ),
+      maxDriveThrough: parseInt(
+        item.parkingSpecs && item.parkingSpecs.maximumvehicleheight ? item.parkingSpecs.maximumvehicleheight : undefined
+      ),
+    };
+  });
+};
+
 export let garageLocations = (rdwData) => {
   return rdwData.map((item) => {
     return {
