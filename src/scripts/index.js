@@ -31,6 +31,6 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   console.log('shows locations', locations);
 
   // Visualizations
-  makeBar(carCapacity);
+  makeBar(parkingSpec);
   makeScat(parkingSpec);
 });
