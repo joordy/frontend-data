@@ -14,8 +14,6 @@ import {
 
 // Importing Visuals
 import { makeBar } from './utils/visuals/makeBar';
-// import { drawVisualization } from './utils/visuals/bar';
-// import { makeScatterPlot } from './utils/visuals/makeScatterPlot';
 import { makeScat } from './utils/visuals/scat';
 
 getData(endpoint1, endpoint2).then((rdwData) => {
@@ -25,14 +23,14 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   const maxDriveThrough = maxVehicleFilter(rdwData);
   const locations = garageLocations(rdwData);
   const parkingSpec = parkingSpecs(rdwData);
+
   // Logging the datasets
   console.log('shows capacity', carCapacity);
   console.log('shows ev-chargers', evChargers);
   console.log('shows drive-height', maxDriveThrough);
   console.log('shows locations', locations);
 
-  // Visuals
+  // Visualizations
   makeBar(carCapacity);
-  // drawVisualization(parkingSpec);  makeScatterPlot(maxDriveThrough);
   makeScat(parkingSpec);
 });
