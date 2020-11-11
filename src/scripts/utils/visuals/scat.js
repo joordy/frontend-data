@@ -91,6 +91,7 @@ const drawVisual = (props, scale, group) => {
   group
     .selectAll('circle')
     .transition()
-    .duration(2000)
-    .attr('cx', (data) => scale.scaleX(props.xValue(data)));
+    .duration(3000)
+    .attr('cx', (data) => scale.scaleX(props.xValue(data)))
+    .delay(1000);
 };

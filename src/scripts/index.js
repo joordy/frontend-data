@@ -14,6 +14,7 @@ import {
 
 // Importing Visuals
 import { makeBar } from './utils/visuals/makeBar';
+import { makeLolly } from './utils/visuals/makeLolli';
 import { makeScat } from './utils/visuals/scat';
 
 getData(endpoint1, endpoint2).then((rdwData) => {
@@ -31,6 +32,7 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   console.log('shows locations', locations);
 
   // Visualizations
-  makeBar(parkingSpec);
+  // makeBar(parkingSpec);
+  makeLolly(parkingSpec);
   makeScat(parkingSpec);
 });

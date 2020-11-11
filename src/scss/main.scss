@@ -71,25 +71,16 @@ body {
         font-size: 16px;
         text-align: right;
       }
-
-      // // path {
-      // //   fill: grey;
-      // //   stroke: black;
-      // //   stroke-opacity: 0.4;
-      // // }
-      // // path:hover {
-      // //   fill: orangered;
-      // // }
-      // .rectangle:hover {
-      //   opacity: 0.5;
-      // }
-      // .bar {
-      //   fill: Darkmagenta;
-      // }
-      // // g {
-      // //   width: 600%;
-      // //   height: 600%;
-      // // }
+      .lolliLine {
+        opacity: 0.8;
+        stroke: grey;
+        stroke-width: 2px;
+      }
+      .lolliCircle {
+        fill: steelblue;
+        opacity: 0.8;
+        stroke: black;
+      }
     }
   }
 }

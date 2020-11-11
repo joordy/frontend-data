@@ -1,6 +1,6 @@
 import { select, scaleLinear, scaleBand, max, axisLeft, axisBottom } from 'd3';
 
-export function makeBar(insertedDataset) {
+export function makeLolly(insertedDataset) {
   const svg = select('#charts').append('svg').attr('width', 960).attr('height', 1000).classed('viz scatter', true);
 
   const props = {
@@ -11,7 +11,7 @@ export function makeBar(insertedDataset) {
     yTitle: 'Parkeergarages Nederland',
     height: parseInt(svg.attr('height')),
     width: parseInt(svg.attr('width')),
-    margin: { t: 60, b: 80, l: 350, r: 30 },
+    margin: { t: 140, b: 80, l: 350, r: 30 },
     xValue: (item) => item.carCapacity,
     yValue: (item) => item.itemDesc,
   };
@@ -31,7 +31,7 @@ export function makeBar(insertedDataset) {
     scaleY: scaleBand() // Positioning the Y-Scale
       .domain(props.myData.map(props.yValue))
       .range([0, inner.height])
-      .padding(0.2),
+      .padding(1),
   };
   const group = svg.append('g').attr('transform', `translate(${props.margin.l}, ${props.margin.t})`);
 
@@ -43,7 +43,10 @@ const createAxis = (props, scale, inner, group) => {
   //  Y-Axis
   const yAxisG = group // Applying the left axis with parking names to the group element.
     .append('g')
-    .call(axisLeft(scale.scaleY));
+    .call(axisLeft(scale.scaleY))
+    .selectAll('.domain, line')
+    .remove();
+
   yAxisG
     .append('text')
     .classed('axisTitle', true)
@@ -71,25 +74,55 @@ const createAxis = (props, scale, inner, group) => {
 
 const drawVisual = (props, scale, group) => {
   group
-    .selectAll('rect')
+    .selectAll('lines')
     .data(props.myData)
     .enter()
-    .append('rect')
-    .attr('y', (data) => scale.scaleY(props.yValue(data)))
-    .attr('width', 0)
-    .attr('height', scale.scaleY.bandwidth())
-    .merge(group)
-    .on('click', () => {
-      console.log('test');
-    });
+    .append('line')
+    .attr('x1', 0)
+    .attr('x2', 0)
+    .attr('y1', (data) => scale.scaleY(props.yValue(data)))
+    .attr('y2', (data) => scale.scaleY(props.yValue(data)))
+    .classed('lolliLine', true);
 
   group
-    .selectAll('rect')
+    .selectAll('circles')
+    .data(props.myData)
+    .enter()
+    .append('circle')
+    .attr('cx', 0)
+    .attr('cy', (data) => scale.scaleY(props.yValue(data)))
+    .classed('lolliCircle', true)
+    .attr('r', '10');
+
+  group
+    .selectAll('circle')
     .transition()
     .duration(1500)
-    .attr('width', (data) => scale.scaleX(props.xValue(data)));
+    .attr('cx', (data) => scale.scaleX(props.xValue(data)));
+
+  group
+    .selectAll('line')
+    .transition()
+    .duration(1500)
+    .attr('x1', (data) => scale.scaleX(props.xValue(data)));
+
+  // .attr('fill', 'steelblue')
+  // .attr('stroke', 'black');
+  // .attr('y', (data) => scale.scaleY(props.yValue(data)))
+  // .attr('width', 0)
+  // .attr('height', scale.scaleY.bandwidth())
+  // .merge(group)
+  // .on('click', () => {
+  //   console.log('test');
+  // });
+
+  // group
+  //   .selectAll('rect')
+  //   .transition()
+  //   .duration(1500)
+  //   .attr('width', (data) => scale.scaleX(props.xValue(data)));
 };
 
-function placeToolTip(data) {
-  return (data) => props.myData.map(props.xValue);
-}
+// function placeToolTip(data) {
+//   return (data) => props.myData.map(props.xValue);
+// }
