@@ -14,8 +14,8 @@ import {
 
 // Importing Visuals
 import { makeBar } from './utils/visuals/makeBar';
-import { drawVisualization } from './utils/visuals/bar';
-import { makeScatterPlot } from './utils/visuals/makeScatterPlot';
+// import { drawVisualization } from './utils/visuals/bar';
+// import { makeScatterPlot } from './utils/visuals/makeScatterPlot';
 import { makeScat } from './utils/visuals/scat';
 
 getData(endpoint1, endpoint2).then((rdwData) => {
@@ -32,8 +32,7 @@ getData(endpoint1, endpoint2).then((rdwData) => {
   console.log('shows locations', locations);
 
   // Visuals
-  drawVisualization(carCapacity);
   makeBar(carCapacity);
-  makeScatterPlot(maxDriveThrough);
+  // drawVisualization(parkingSpec);  makeScatterPlot(maxDriveThrough);
   makeScat(parkingSpec);
 });

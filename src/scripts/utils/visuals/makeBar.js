@@ -1,39 +1,49 @@
-import { select, range, scaleLinear, max, scaleBand, axisLeft, axisBottom, format, descending } from 'd3';
-import { svgSize } from './helpers/config';
+import { select, scaleLinear, scaleBand, max, axisLeft, axisBottom, create } from 'd3';
 
-export function makeBar(carCapacity) {
-  // Graph data
-  const data = carCapacity.splice(0, 100);
-  // console.log(data);
+export function makeBar(parkingSpec) {
+  const svg = select('#charts').append('svg').attr('width', 960).attr('height', 500).classed('viz scatter', true);
 
-  // Creating SVG
-  const svg = select('#charts')
-    .append('svg')
-    .attr('width', svgSize.w - svgSize.m.l - svgSize.m.r)
-    .attr('height', svgSize.h - svgSize.m.t - svgSize.m.b)
-    .attr('viewBox', [0, 0, svgSize.w, svgSize.h])
-    .classed('myBarChart Bar', true);
-  // X axis
+  const props = {
+    myData: parkingSpec.splice(0, 20),
+    height: parseInt(svg.attr('height')),
+    width: parseInt(svg.attr('width')),
+    margin: { t: 100, b: 40, l: 320, r: 30 },
+    xValue: (item) => item.carCapacity,
+    yValue: (item) => item.itemDesc,
+  };
 
-  const xValue = scaleBand()
-    .domain(range(data.length))
-    .range([svgSize.m.l, svgSize.w - svgSize.m.r])
-    .padding(0.1);
+  const inner = {
+    height: props.height - props.margin.t - props.margin.b,
+    width: props.width - props.margin.l - props.margin.r,
+  };
 
-  // Y axis
-  const yValue = scaleLinear()
-    .domain([0, max(data, (d) => d.carCapacity)])
-    .range([svgSize.h - svgSize.m.b, svgSize.m.t]);
+  const scales = {
+    xScale: scaleLinear() // Positioning the X-Scale
+      .domain([0, max(props.myData.map(props.xValue))])
+      .range([0, inner.width]),
+    yScale: scaleBand() // Positioning the Y-Scale
+      .domain(props.myData.map(props.yValue))
+      .range([0, inner.height])
+      .padding(0.2),
+  };
+  const group = svg.append('g').attr('transform', `translate(${props.margin.l}, ${props.margin.t})`);
 
-  svg
-    .append('g')
-    .attr('fill', 'royalblue')
-    .selectAll('rect')
-    .enter()
-    .data(data.sort((a, b) => descending(a.carCapacity, b.carCapacity)))
-    .join('rect')
-    .attr('x', (d, i) => xValue(i))
-    .attr('y', (d) => yValue(d.carCapacity))
-    .attr('height', (d) => yValue(0) - yValue(d.carCapacity))
-    .attr('width', xValue.bandwidth());
+  createAxis(scales, inner, group);
+  drawVisual(props, scales, group);
 }
+
+const createAxis = (scale, inner, group) => {
+  group.append('g').call(axisLeft(scale.yScale));
+  group.append('g').call(axisBottom(scale.xScale)).attr('transform', `translate(0, ${inner.height})`);
+};
+
+const drawVisual = (props, scale, group) => {
+  group
+    .selectAll('rect')
+    .data(props.myData)
+    .enter()
+    .append('rect')
+    .attr('y', (data) => scale.yScale(props.yValue(data)))
+    .attr('width', (data) => scale.xScale(props.xValue(data)))
+    .attr('height', scale.yScale.bandwidth());
+};

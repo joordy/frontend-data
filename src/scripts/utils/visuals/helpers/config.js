@@ -8,15 +8,10 @@ export const svgSize = {
 export const view = {
   width: 960,
   height: 540,
-  margin: {
-    t: 48,
-    b: 120,
-    l: 272,
-    r: 72,
-  },
+  margin: { t: 40, b: 120, l: 200, r: 72 },
 };
 
-export const inner = {
-  w: view.width - view.margin.l - view.margin.r,
-  h: view.height - view.margin.t - view.margin.b,
-};
+// export const inner = {
+//   height: props.height - props.margin.t - props.margin.b,
+//   width: props.width - props.margin.l - props.margin.r,
+// };

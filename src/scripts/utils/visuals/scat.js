@@ -1,65 +1,47 @@
-import { select, range, scaleLinear, max, scaleBand, axisLeft, axisBottom, format, descending } from 'd3';
-
-import { view, inner } from './helpers/config';
+import { select, scaleLinear, scaleBand, max, axisLeft, axisBottom } from 'd3';
 
 export function makeScat(parkingSpec) {
-  const svg = select('#charts')
-    .append('svg')
-    .attr('width', view.width)
-    .attr('height', view.height)
-    .classed('viz scatter', true);
+  const svg = select('#charts').append('svg').attr('width', 960).attr('height', 500).classed('viz scatter', true);
 
   const props = {
     myData: parkingSpec.splice(0, 20),
-    group: svg.append('g').attr('transform', `translate(${view.margin.l}, ${view.margin.t})`),
-    y: scaleBand().padding(0.1),
-    x: scaleLinear(),
-    height: parseInt(svg.style('height'), 10) - view.margin.t - view.margin.b,
-    width: parseInt(svg.style('width'), 10) - view.margin.l - view.margin.r,
+    height: parseInt(svg.attr('height')),
+    width: parseInt(svg.attr('width')),
+    margin: { t: 100, b: 40, l: 320, r: 30 },
+    xValue: (item) => item.carCapacity,
+    yValue: (item) => item.itemDesc,
   };
 
-  console.log(props.myData);
+  const inner = {
+    height: props.height - props.margin.t - props.margin.b,
+    width: props.width - props.margin.l - props.margin.r,
+  };
 
-  setScaling(props);
-  setAxes(props);
-  drawVisual(props);
+  const scales = {
+    xScale: scaleLinear() // Positioning the X-Scale
+      .domain([0, max(props.myData.map(props.xValue))])
+      .range([0, inner.width]),
+    yScale: scaleBand() // Positioning the Y-Scale
+      .domain(props.myData.map(props.yValue))
+      .range([0, inner.height])
+      .padding(0.2),
+  };
+
+  drawVisual(props, svg, scales, inner);
 }
+let drawVisual = (props, svg, scale, inner) => {
+  const group = svg.append('g').attr('transform', `translate(${props.margin.l}, ${props.margin.t})`);
 
-const setScaling = (props) => {
-  // console.log('a');
-  // console.log(props.myData);
-  props.x.domain([0, max(props.myData.map((item) => item.carCapacity))]);
-  props.x.rangeRound([0, props.width]);
-  props.y.domain(props.myData.map((item) => item.itemDesc));
-  props.y.rangeRound([0, props.height]);
-};
+  console.log('a');
+  group.append('g').call(axisLeft(scale.yScale));
+  group.append('g').call(axisBottom(scale.xScale)).attr('transform', `translate(0, ${inner.height})`);
 
-const setAxes = (props) => {
-  // console.log('b');
-  // console.log(props);
-  props.group
-    .append('g')
-    .attr('class', 'axis axis-x')
-    .call(axisBottom(props.x))
-    .attr('transform', `translate(0, ${props.height})`)
-    .selectAll('text')
-    //Note: There's prob a better way to do this...
-    .attr('transform', 'rotate(45)')
-    .attr('dx', 80)
-    .attr('dy', '1em');
-
-  props.group.append('g').attr('class', 'axis axis-y').call(axisLeft(props.y));
-};
-
-const drawVisual = (props) => {
-  props.group
+  group
     .selectAll('rect')
     .data(props.myData)
     .enter()
     .append('rect')
-    .attr('class', 'bar')
-    .attr('x', (d) => props.x(d.carCapacity))
-    .attr('y', (d) => props.y(d.itemDesc))
-    .attr('height', props.y.bandwidth())
-    .attr('width', (d) => props.width - props.x(d.carCapacity));
+    .attr('y', (data) => scale.yScale(props.yValue(data)))
+    .attr('width', (data) => scale.xScale(props.xValue(data)))
+    .attr('height', scale.yScale.bandwidth());
 };
