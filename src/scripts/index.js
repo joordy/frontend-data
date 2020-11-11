@@ -19,17 +19,17 @@ import { makeScat } from './utils/visuals/scat';
 
 getData(endpoint1, endpoint2).then((rdwData) => {
   // New Data arrays to use in visuals
-  const carCapacity = capacityFilter(rdwData);
-  const evChargers = evCapacityFilter(rdwData);
-  const maxDriveThrough = maxVehicleFilter(rdwData);
-  const locations = garageLocations(rdwData);
+  // const carCapacity = capacityFilter(rdwData);
+  // const evChargers = evCapacityFilter(rdwData);
+  // const maxDriveThrough = maxVehicleFilter(rdwData);
+  // const locations = garageLocations(rdwData);
   const parkingSpec = parkingSpecs(rdwData);
 
   // Logging the datasets
-  console.log('shows capacity', carCapacity);
-  console.log('shows ev-chargers', evChargers);
-  console.log('shows drive-height', maxDriveThrough);
-  console.log('shows locations', locations);
+  // console.log('shows capacity', carCapacity);
+  // console.log('shows ev-chargers', evChargers);
+  // console.log('shows drive-height', maxDriveThrough);
+  // console.log('shows locations', locations);
 
   // Visualizations
   // makeBar(parkingSpec);

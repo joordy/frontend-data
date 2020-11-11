@@ -105,24 +105,16 @@ const drawVisual = (props, scale, group) => {
     .transition()
     .duration(1500)
     .attr('x1', (data) => scale.scaleX(props.xValue(data)));
-
-  // .attr('fill', 'steelblue')
-  // .attr('stroke', 'black');
-  // .attr('y', (data) => scale.scaleY(props.yValue(data)))
-  // .attr('width', 0)
-  // .attr('height', scale.scaleY.bandwidth())
-  // .merge(group)
-  // .on('click', () => {
-  //   console.log('test');
-  // });
-
-  // group
-  //   .selectAll('rect')
-  //   .transition()
-  //   .duration(1500)
-  //   .attr('width', (data) => scale.scaleX(props.xValue(data)));
 };
 
-// function placeToolTip(data) {
-//   return (data) => props.myData.map(props.xValue);
-// }
+document.querySelector('#carCap').addEventListener('click', function () {
+  console.log('test');
+});
+
+document.querySelector('#evCap').addEventListener('click', function () {
+  console.log('test');
+});
+
+// document.querySelector('#remove').addEventListener('click', function () {
+//   console.log('test');
+// });
