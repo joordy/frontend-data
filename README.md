@@ -67,12 +67,13 @@ localhost:1234
 
 #### Data sources:
 
-<!-- - RDW. (2020, 29 oktober). GEO Parkeer Garages | Open Data | RDW. Recieved on october 22 2020, from https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34
-- RDW. (2020, 29 oktober). Open Data Parkeren: SPECIFICATIES PARKEERGEBIED | Open Data | RDW. Recieved on october 23 2020, van https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s -->
+- RDW. (2020, 29 oktober). GEO Parkeer Garages | Open Data | RDW. Recieved on october 22 2020, from https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34
+- RDW. (2020, 29 oktober). Open Data Parkeren: SPECIFICATIES PARKEERGEBIED | Open Data | RDW. Recieved on october 23 2020, van https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s
 
 #### Code Sources:
 
----
+- Curran Kelleher. (2018, 4 oktober). Scatter Plot with Menus. Geraadpleegd op 10 november 2020, van https://www.youtube.com/watch?v=MjjYLbShFi8&t=36s
+- Holtz, Y. (z.d.). Lollipop chart. Geraadpleegd op 11 november 2020, van https://www.d3-graph-gallery.com/lollipop.html
 
 ## :lock: License
 
