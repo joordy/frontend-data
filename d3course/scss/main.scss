@@ -1,0 +1,59 @@
+@import url('https://rsms.me/inter/inter.css');
+html {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+body {
+  background-color: black;
+  color: white;
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+  a {
+    color: white;
+  }
+  svg {
+    background-color: white;
+    circle {
+      fill: steelblue;
+    }
+    circle {
+      fill: red;
+      opacity: 0.3;
+    }
+    text {
+      font-size: 2rem;
+      font-family: sans-serif;
+      text-anchor: middle;
+    }
+    .title {
+      text-anchor: middle;
+    }
+    .tick text {
+      font-size: 1.2rem;
+      fill: #635f5d;
+    }
+    .tick line {
+      stroke: #c0c0bb;
+    }
+    .axis-label {
+      font-size: 1.5rem;
+      color: #8e8883;
+    }
+  }
+}
