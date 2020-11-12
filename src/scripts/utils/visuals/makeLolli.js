@@ -1,10 +1,14 @@
-import { select, scaleLinear, scaleBand, max, axisLeft, axisBottom } from 'd3';
+import { select, scaleLinear, scaleBand, max } from 'd3';
+import { drawVisual, createAxis } from './helpers/lolly';
 
+// Global function with all the variables, data, and
+// calling the functions for making the visualization
 export function makeLolly(insertedDataset) {
   const svg = select('#charts').append('svg').attr('width', 960).attr('height', 1000).classed('viz scatter', true);
 
+  // Object with properties about which dataset to use, width,
+  // height, margins, x and y values.
   const props = {
-    // Object with properties about which dataset to use, width, height, margins, x and y values.
     myData: insertedDataset.splice(10, 40),
     title: 'Capaciteit parkeergarages Nederland',
     xTitle: 'Aantallen',
@@ -15,16 +19,15 @@ export function makeLolly(insertedDataset) {
     xValue: (item) => item.carCapacity,
     yValue: (item) => item.itemDesc,
   };
-
+  // Calculating inner-width based on props, so needs to be outside of it.
   const inner = {
-    // Calculating inner-width based on props, so needs to be outside of it.
     height: props.height - props.margin.t - props.margin.b,
     width: props.width - props.margin.l - props.margin.r,
   };
 
+  // Creating the X and Y scales, based on the properties value.
+  // Functions are reusable for other scales.
   const scales = {
-    // Creating the X and Y scales, based on the properties value.
-    // Functions are reusable for other scales.
     scaleX: scaleLinear() // Positioning the X-Scale
       .domain([0, max(props.myData.map(props.xValue))])
       .range([0, inner.width]),
@@ -40,102 +43,3 @@ export function makeLolly(insertedDataset) {
   createAxis(props, scales, inner, group);
   drawVisual(props, scales, group);
 }
-
-const createAxis = (props, scale, inner, group) => {
-  //  Y-Axis
-  const yAxisG = group // Applying the left axis with parking names to the group element.
-    .append('g')
-    .call(axisLeft(scale.scaleY))
-    .selectAll('.domain, line')
-    .remove();
-
-  yAxisG
-    .append('text')
-    .classed('axisTitle', true)
-    .attr('y', -330)
-    .attr('x', -350)
-    .attr('transform', 'rotate(-90)')
-    .text(props.yTitle);
-
-  // X-Axis
-  const xAxis = axisBottom(scale.scaleX).tickSize(-inner.height);
-  const xAxisG = group // Applying the bottom axis with values to the group element.
-    .append('g')
-    .call(xAxis);
-  xAxisG
-    .attr('transform', `translate(0, ${inner.height})`)
-    .append('text')
-    .classed('axisTitle', true)
-    .attr('y', 50)
-    .attr('x', inner.width / 2)
-    .text(props.xTitle);
-
-  // Graph Title
-  group.append('text').classed('graphTitle', true).attr('y', -20).attr('x', -300).text(props.title);
-};
-
-const drawVisual = (props, scale, group) => {
-  group
-    .selectAll('lines')
-    .data(props.myData)
-    .enter()
-    .append('line')
-    .attr('x1', 0)
-    .attr('x2', 0)
-    .attr('y1', (data) => scale.scaleY(props.yValue(data)))
-    .attr('y2', (data) => scale.scaleY(props.yValue(data)))
-    .classed('lolliLine', true);
-
-  group
-    .selectAll('circles')
-    .data(props.myData)
-    .enter()
-    .append('circle')
-    .attr('cx', 0)
-    .attr('cy', (data) => scale.scaleY(props.yValue(data)))
-    .classed('lolliCircle', true)
-    .attr('r', '10');
-
-  group
-    .selectAll('circle')
-    .transition()
-    .duration(1500)
-    .attr('cx', (data) => scale.scaleX(props.xValue(data)));
-
-  group
-    .selectAll('line')
-    .transition()
-    .duration(1500)
-    .attr('x1', (data) => scale.scaleX(props.xValue(data)));
-};
-
-// document.querySelector('#carCap').addEventListener('click', function () {
-//   console.log('test');
-// });
-
-// document.querySelector('#evCap').addEventListener('click', function () {
-//   console.log('test');
-// });
-
-// document.querySelector('#remove').addEventListener('click', function () {
-//   console.log('test');
-// });
-
-// const createForm = (svg) => {
-//   svg
-//     .append('g')
-//     .classed('formGroup', true)
-//     .append('form')
-//     .append('input')
-//     .attr('type', 'radio')
-//     .attr('name', selectedState)
-
-//     .attrs({
-//       type: 'radio',
-//       //'value: (data) => ',
-//       //'checked: (data) => ',
-//       name: 'selectedState',
-//     });
-
-//   // svg.append('form').attr('width', '300').attr('height', '200').append('input').attr('type', 'radio');
-// };

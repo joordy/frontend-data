@@ -10,8 +10,3 @@ export const view = {
   height: 540,
   margin: { t: 40, b: 120, l: 200, r: 72 },
 };
-
-// export const inner = {
-//   height: props.height - props.margin.t - props.margin.b,
-//   width: props.width - props.margin.l - props.margin.r,
-// };
