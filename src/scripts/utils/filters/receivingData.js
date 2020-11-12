@@ -1,6 +1,4 @@
-// export function getAreaManager(dataArray, key) {
-//   return dataArray.map((item) => item[key]);
-// }
+// Special thanks to Gijs Laarman for helping me out with the operators.
 
 export let capacityFilter = (rdwData) => {
   return rdwData.map((item) => {
