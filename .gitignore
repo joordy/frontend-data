@@ -107,6 +107,6 @@ dist
 
 surveyData/
 data/
-src/d3course/
+d3course/
 draft.js
 drafts/

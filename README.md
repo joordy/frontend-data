@@ -72,6 +72,8 @@ localhost:1234
 
 #### Code Sources:
 
+The project is based on these different graphs,
+
 - Curran Kelleher. (2018, 4 oktober). Scatter Plot with Menus. Geraadpleegd op 10 november 2020, van https://www.youtube.com/watch?v=MjjYLbShFi8&t=36s
 - Holtz, Y. (z.d.). Lollipop chart. Geraadpleegd op 11 november 2020, van https://www.d3-graph-gallery.com/lollipop.html
 
