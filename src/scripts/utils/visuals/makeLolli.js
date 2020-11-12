@@ -33,8 +33,10 @@ export function makeLolly(insertedDataset) {
       .range([0, inner.height])
       .padding(1),
   };
+
   const group = svg.append('g').attr('transform', `translate(${props.margin.l}, ${props.margin.t})`);
 
+  // Calling functions
   createAxis(props, scales, inner, group);
   drawVisual(props, scales, group);
 }
@@ -107,14 +109,33 @@ const drawVisual = (props, scale, group) => {
     .attr('x1', (data) => scale.scaleX(props.xValue(data)));
 };
 
-document.querySelector('#carCap').addEventListener('click', function () {
-  console.log('test');
-});
+// document.querySelector('#carCap').addEventListener('click', function () {
+//   console.log('test');
+// });
 
-document.querySelector('#evCap').addEventListener('click', function () {
-  console.log('test');
-});
+// document.querySelector('#evCap').addEventListener('click', function () {
+//   console.log('test');
+// });
 
 // document.querySelector('#remove').addEventListener('click', function () {
 //   console.log('test');
 // });
+
+// const createForm = (svg) => {
+//   svg
+//     .append('g')
+//     .classed('formGroup', true)
+//     .append('form')
+//     .append('input')
+//     .attr('type', 'radio')
+//     .attr('name', selectedState)
+
+//     .attrs({
+//       type: 'radio',
+//       //'value: (data) => ',
+//       //'checked: (data) => ',
+//       name: 'selectedState',
+//     });
+
+//   // svg.append('form').attr('width', '300').attr('height', '200').append('input').attr('type', 'radio');
+// };
