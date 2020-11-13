@@ -4,24 +4,17 @@
 
 **What about the accessibility of parking garages in the major cities of the Netherlands**
 
-**Hebben parkeergarages in grotere steden meer plek voor elektrische voertuigen**
+#### Sub questions:
 
-**Hebben parkeergarages in grote steden minder plekken voor hogere voertuigen?**
-
-Sub items:
-
-- Charging access
-- Disabled Access
-- Parking Capacity
-- DriveThroughHeight, accessible for everyone?
-
-<!-- **How well developed are the parking garages of the largest cities in the Randstad?** -->
+- How are the charging stations divided
+- How is the parking capacity divided
+- What is the maximum Drive-Through height, is it accessible for everyone?
 
 ---
 
-## :flashlight: Features
+## :flashlight: Concept
 
-I'll be making a data visualization with Javascript D3 of how well developed the parking garages are in the big cities from holland. I'll be comparing the Drive-through height, EV-charging capacity and the disabled access possibilities. By using the location I display where the optimal parking garages are located.
+I'll be making a data visualization with Javascript D3 of how well developed the parking garages are in the big cities from holland. I'll be comparing the Drive-through height, EV-charging capacity and the disabled access possibilities. By using the location I display where the optimal parking garages are located. To read more about it, make sure to check out my [documentation](https://github.com/joordy/frontend-data/wiki/Concept).
 
 ---
 
