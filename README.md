@@ -24,10 +24,6 @@ For my project I'll be using the [Location API](https://opendata.rdw.nl/Parkeren
 
 ---
 
-<!-- ## :key: Interesting functional pattern
-
---- -->
-
 ## :rocket: Install
 
 #### Clone the GitHub repository
@@ -53,6 +49,16 @@ npm run dev
 ```bash
 localhost:1234
 ```
+
+---
+
+## :key: Deployment link
+
+[frontenddata-jorrr.netlify.app](https://frontenddata-jorrr.netlify.app/)
+
+### Used example:
+
+[D3 Graph Gallery — Lollipop](https://www.d3-graph-gallery.com/lollipop.html)
 
 ---
 
