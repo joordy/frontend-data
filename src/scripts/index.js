@@ -13,26 +13,24 @@ import {
 } from './utils/filters/receivingData';
 
 // Importing Visuals
-import { makeBar } from './utils/visuals/makeBar';
-import { makeLolly } from './utils/visuals/makeLolli';
-import { makeScat } from './utils/visuals/scat';
+import { makeLollyInteractive } from './utils/visuals/makeLollyInter';
+import { makeScat } from './utils/visuals/makeScat';
 
 getData(endpoint1, endpoint2).then((rdwData) => {
   // New Data arrays to use in visuals
-  // const carCapacity = capacityFilter(rdwData);
-  // const evChargers = evCapacityFilter(rdwData);
-  // const maxDriveThrough = maxVehicleFilter(rdwData);
-  // const locations = garageLocations(rdwData);
+  const carCapacity = capacityFilter(rdwData);
+  const evChargers = evCapacityFilter(rdwData);
+  const maxDriveThrough = maxVehicleFilter(rdwData);
+  const locations = garageLocations(rdwData);
   const parkingSpec = parkingSpecs(rdwData);
 
   // Logging the datasets
-  // console.log('shows capacity', carCapacity);
-  // console.log('shows ev-chargers', evChargers);
-  // console.log('shows drive-height', maxDriveThrough);
-  // console.log('shows locations', locations);
+  console.log('shows capacity', carCapacity);
+  console.log('shows ev-chargers', evChargers);
+  console.log('shows drive-height', maxDriveThrough);
+  console.log('shows locations', locations);
 
   // Visualizations
-  // makeBar(parkingSpec);
-  makeLolly(parkingSpec);
+  makeLollyInteractive(parkingSpec);
   makeScat(parkingSpec);
 });

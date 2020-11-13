@@ -63,32 +63,40 @@ body {
         font-weight: 700;
       }
       .axisTitle {
-        font-size: 16px;
-        fill: black;
-        text-anchor: middle;
+        color: black;
+        font-size: 1.2rem;
       }
       .extraText {
         font-size: 16px;
         text-align: right;
       }
-      .lolliLine {
+      .lollyLine {
         opacity: 0.8;
         stroke: grey;
         stroke-width: 2px;
       }
-      .lolliCircle {
+      .lollyCircle {
         fill: steelblue;
         opacity: 0.8;
         stroke: black;
       }
     }
-    select {
-      width: 200px;
-      font-size: 1.2rem;
-      option {
-        font-size: 1rem;
-      }
+    div {
+      margin-top: 2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+    label {
+      color: white;
+    }
+    // select {
+    //   width: 200px;
+    //   font-size: 1.2rem;
+    //   option {
+    //     font-size: 1rem;
+    //   }
+    // }
 
     // form {
     //   position: fixed;

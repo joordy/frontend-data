@@ -76,6 +76,10 @@ The project is based on these different graphs,
 
 - Curran Kelleher. (2018, 4 oktober). Scatter Plot with Menus. Geraadpleegd op 10 november 2020, van https://www.youtube.com/watch?v=MjjYLbShFi8&t=36s
 - Holtz, Y. (z.d.). Lollipop chart. Geraadpleegd op 11 november 2020, van https://www.d3-graph-gallery.com/lollipop.html
+- Aarnoudse, L. (2020). Exploring survey data interactively - y-axis. Geraadpleegd op 12 november 2020, van https://vizhub.com/Razpudding/4a61de4a4034423a98ae79d0135781f7?edit=files&file=index.js
+- Curran Kelleher. (2018, 6 september). Customizing Axes of a Bar Chart with D3.js. Geraadpleegd op 11 november 2020, van https://www.youtube.com/watch?v=c3MCROTNN8g&list=PL9yYRbwpkykvOXrZumtZWbuaXWHvjD8gi&index=9
+- Curran Kelleher. (2017, 28 september). Lollipop Chart. Geraadpleegd op 12 november 2020, van https://bl.ocks.org/curran/d867264d468b323c2e76886d44e7e8f9
+- D3JS. (z.d.). D3/d3. Geraadpleegd op 6 november 2020, van https://github.com/d3/d3/
 
 ## :lock: License
 
