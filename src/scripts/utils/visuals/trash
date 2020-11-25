@@ -1,0 +1,113 @@
+import { scaleLinear, max, scaleBand, axisLeft, axisBottom, select } from 'd3';
+
+const svg = select('#charts').append('svg').attr('width', 960).attr('height', 700);
+const width = parseInt(svg.attr('width'));
+const height = parseInt(svg.attr('height'));
+const margin = { t: 100, r: 50, b: 50, l: 300 };
+const innerW = width - margin.l - margin.r;
+const innerH = height - margin.t - margin.b;
+let updatableValue = 'carCapacity';
+let graphTitle = `${updatableValue} per parking area`;
+let valueX_Axis = (d) => d.itemDesc;
+let valueY_Axis = (d) => d[updatableValue];
+let labelAxisY = 'Number of charging points';
+let scaleAxis_X = scaleBand().padding(0.2);
+let scaleAxis_Y = scaleLinear();
+let myData;
+
+const group = svg.append('g').attr('transform', `translate(${margin.l}, ${margin.t})`);
+
+export function makeInterActiveBar(data) {
+  myData = data.slice(0, 20);
+  let selectedValues = Object.keys(myData[0]);
+  selectedValues = selectedValues.filter((item) => item !== 'itemDesc' && item !== 'itemID');
+
+  // Function-chain to draw the chart
+  createGraphTitle(graphTitle);
+  setupInput(selectedValues);
+  createScaling();
+  createAxesAndLabel(myData, labelAxisY);
+  updateBars(0);
+}
+
+const createGraphTitle = (graphTitle) => {
+  group
+    .append('text')
+    .attr('class', 'graphTitle')
+    .attr('y', -30)
+    .attr('x', innerW / 2)
+    .text(graphTitle);
+};
+
+let createScaling = () => {
+  scaleAxis_X.domain(myData.map(valueX_Axis)).range([0, innerW]);
+  scaleAxis_Y
+    .domain([0, max(myData, valueY_Axis)])
+    .range([innerH, 0])
+    .nice();
+};
+
+let createAxesAndLabel = (text) => {
+  group
+    .append('g')
+    .attr('class', 'axis-x')
+    .call(axisBottom(scaleAxis_X))
+    .attr('transform', `translate(0, ${innerH})`)
+    .selectAll('text')
+    .attr('transform', 'rotate(-90)')
+    .attr('x', -15)
+    .attr('y', -5)
+    .attr('text-anchor', 'end');
+
+  group // Makes
+    .append('g')
+    .attr('class', 'axis-y')
+    .call(axisLeft(scaleAxis_Y).ticks(10));
+
+  group
+    .select('.axis-y')
+    .append('text')
+    .attr('class', 'axis-label')
+    .attr('y', -60)
+    .attr('text-anchor', 'middle')
+    .attr('x', -innerH / 2)
+    .attr('transform', 'rotate(-90)')
+    .text(text);
+};
+
+let updateBars = (num) => {
+  let bars = group.selectAll('rect').data(myData);
+  bars
+    .enter()
+    .append('rect')
+    .merge(bars)
+    .transition()
+    .duration(num)
+    .attr('class', 'bars')
+    .attr('x', (p) => scaleAxis_X(valueX_Axis(p)))
+    .attr('y', (p) => scaleAxis_Y(valueY_Axis(p)))
+    .attr('height', (p) => innerH - scaleAxis_Y(valueY_Axis(p)))
+    .attr('width', scaleAxis_X.bandwidth());
+};
+
+let setupInput = (selectedValues) => {
+  const form = select('#form')
+    .append('select')
+    .on('change', createUpdate)
+    .selectAll('option')
+    .data(selectedValues)
+    .enter()
+    .append('option')
+    .attr('value', (d) => d)
+    .text((d) => d);
+};
+
+function createUpdate() {
+  updatableValue = this.value;
+  createScaling();
+  scaleAxis_Y.domain([0, max(myData, valueY_Axis)]);
+  updateBars(1000);
+  group.select('.axis-y').transition().duration(1000).call(axisLeft(scaleAxis_Y).ticks(10));
+  svg.select('.graphTitle').text(`${updatableValue} per parking area`);
+  group.select('.axis-label').text(`Number of ${updatableValue}`);
+}

@@ -32,20 +32,31 @@ body {
       background-color: white;
     }
     svg {
-      &:nth-child(1) {
+      &:first-of-type {
         display: none;
       }
       display: block;
       margin: auto;
       margin: 50px auto 50px auto;
       background-color: white;
-      position: relative;
       rect {
-        fill: royalblue;
-        opacity: 0.8;
+        fill: #6700e5;
+        opacity: 0.6;
+        rx: 1;
+        &:hover {
+          opacity: 1;
+        }
       }
-      rect:hover {
-        opacity: 1;
+      text {
+        font-size: 0.825rem;
+        color: grey;
+      }
+      .graphTitle {
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
+      .axisLabel {
+        font-weight: 700;
       }
       circle {
         fill: red;
@@ -54,33 +65,23 @@ body {
       circle:hover {
         opacity: 1;
       }
-      text {
-        font-size: 12px;
-        color: grey;
-      }
-      .graphTitle {
-        font-size: 1.75rem;
-        font-weight: 700;
-      }
-      .axisTitle {
-        color: black;
-        font-size: 1.2rem;
-      }
-      .extraText {
-        font-size: 16px;
-        text-align: right;
-      }
-      .lollyLine {
-        opacity: 0.8;
-        stroke: grey;
-        stroke-width: 2px;
-      }
-      .lollyCircle {
-        fill: steelblue;
-        opacity: 0.8;
-        stroke: black;
-      }
     }
+
+    .extraText {
+      font-size: 16px;
+      text-align: right;
+    }
+    .lollyLine {
+      opacity: 0.8;
+      stroke: grey;
+      stroke-width: 2px;
+    }
+    .lollyCircle {
+      fill: steelblue;
+      opacity: 0.8;
+      stroke: black;
+    }
+
     div {
       margin-top: 2em;
       display: flex;

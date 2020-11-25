@@ -27,6 +27,7 @@ export function makeLollyInteractive(insertedDataset) {
     .domain([0, max(props.myData, (item) => item[endPoint])])
     .rangeRound([0, innerWidth])
     .nice();
+
   const scaleY = scaleBand()
     .domain(props.myData.map((item) => item.itemDesc))
     .rangeRound([0, innerHeight])
@@ -37,13 +38,16 @@ export function makeLollyInteractive(insertedDataset) {
   createAxis(props, scaleY, group, innerHeight, innerWidth, xAxis);
   createViz(endPoint, group, props, scaleX, scaleY, xAxis);
 
+  select('#carCap').on('click', fireFunction);
+
+  function fireFunction() {}
   select('#carCap').on('click', (endPoint) => {
     endPoint = 'carCapacity';
     svg.selectAll('.lollyLine').remove();
     svg.selectAll('.lollyCircle').remove();
     scaleX.domain([0, max(props.myData, (item) => item[endPoint])]);
 
-    createViz(endPoint, group, props, scaleX, scaleY, xAxis);
+    // createViz(endPoint, group, props, scaleX, scaleY, xAxis);
   });
 
   select('#evCap').on('click', (endPoint) => {
@@ -51,7 +55,7 @@ export function makeLollyInteractive(insertedDataset) {
     svg.selectAll('.lollyLine').remove();
     svg.selectAll('.lollyCircle').remove();
     scaleX.domain([0, max(props.myData, (item) => item[endPoint])]);
-    createViz(endPoint, group, props, scaleX, scaleY, xAxis);
+    // createViz(endPoint, group, props, scaleX, scaleY, xAxis);
   });
 
   select('#driveThrough').on('click', (endPoint) => {
