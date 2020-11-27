@@ -1,4 +1,5 @@
-// Used code: https://vizhub.com/Razpudding/0e37e2146acf4a8db9a55f6f3509f090 && a bit of help from Veerle
+// Used code: https://vizhub.com/Razpudding/0e37e2146acf4a8db9a55f6f3509f090
+
 import { scaleLinear, max, scaleBand, axisLeft, axisBottom, select } from 'd3';
 import { countValues } from '../filters/receivingData';
 
@@ -13,17 +14,18 @@ const group = svg.append('g').attr('transform', `translate(${margin.l}, ${margin
 
 // Updatable variables like X-value, scales, data, labels and graph title
 let updatableValue = 'totalCapacity';
-let graphTitle = `Information about parking spots in the city`;
 let valueY_Axis = (data) => data.name;
 let valueX_Axis = (data) => data[updatableValue];
 let labelAxisX = updatableValue;
-let labelAxisY = 'Cities';
 let scaleAxis_Y = scaleBand().padding(0.1);
 let scaleAxis_X = scaleLinear();
 let myData;
 
 // Head function-chain which exports to index.js
 export function makeInterActiveBar(data) {
+  const graphTitle = `Information about parking spots in the city`;
+  let labelAxisY = 'Cities';
+
   // Fires function which merges cities together
   const filteredData = countValues(data);
   myData = filteredData.slice(0, 50);
@@ -35,7 +37,7 @@ export function makeInterActiveBar(data) {
   // Function-chain to draw the chart
   createUserInput(selectedValues);
   createScaling();
-  createSkeleton(graphTitle, labelAxisX);
+  createSkeleton(graphTitle, labelAxisX, labelAxisY);
   updateBars(0);
 }
 
@@ -51,7 +53,7 @@ let createScaling = () => {
 };
 
 // Creating the core of the graph, with X & Y axis, graph title and labels
-let createSkeleton = (graphTitle, labelAxisX) => {
+let createSkeleton = (graphTitle, labelAxisX, labelAxisY) => {
   group // Draws X-Axis
     .append('g')
     .classed('xAxis', true)

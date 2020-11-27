@@ -1,5 +1,7 @@
 # frontend-data
 
+![gif](https://user-images.githubusercontent.com/48051912/100428511-56885380-3094-11eb-8a5d-bb8b432c679c.gif)
+
 ## :page_facing_up: Research Case
 
 **What about the accessibility of parking garages in the major cities of the Netherlands**
