@@ -21,7 +21,7 @@ let scaleAxis_Y = scaleBand().padding(0.1);
 let scaleAxis_X = scaleLinear();
 let myData;
 
-// Head function-chain which exports to index.js
+// Head function-chain which exports to index.js, data is inserted here, and selected values injected from the DOM.
 export function makeInterActiveBar(data) {
   const graphTitle = `Information about parking spots in the city`;
   let labelAxisY = 'Cities';
@@ -41,7 +41,7 @@ export function makeInterActiveBar(data) {
   updateBars(0);
 }
 
-// Create updatable scales. Y is static, X is updatable
+// Create updatable scales. Y-Axis is static, X-Axis is updatable
 let createScaling = () => {
   scaleAxis_Y //
     .domain(myData.map(valueY_Axis))
@@ -53,6 +53,7 @@ let createScaling = () => {
 };
 
 // Creating the core of the graph, with X & Y axis, graph title and labels
+// This function is static. Cause the graph only needs to be draw once.
 let createSkeleton = (graphTitle, labelAxisX, labelAxisY) => {
   group // Draws X-Axis
     .append('g')
@@ -99,6 +100,7 @@ let createSkeleton = (graphTitle, labelAxisX, labelAxisY) => {
 };
 
 // Draw bars, and updates the bar after .merge() when value changes.
+// Sets width of bar to value of xScale
 let updateBars = (num) => {
   let graphBars = group.selectAll('rect').data(myData);
   graphBars
@@ -115,6 +117,7 @@ let updateBars = (num) => {
 };
 
 // Receives input from DOM > 4 options
+// Fires createUpdate function
 let createUserInput = (selectedValues) => {
   select('#form')
     .append('select')
@@ -128,6 +131,8 @@ let createUserInput = (selectedValues) => {
 };
 
 // Updates the bars, labels and axes
+// Receives value from the DOM. which user gave, refires scaling of X value with new domain
+// Fires UpdateBars function and updates the bottom Axis with new ticks and label.
 function createUpdate() {
   updatableValue = this.value;
   // Fires scaling function to update value
